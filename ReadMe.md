@@ -2,7 +2,8 @@
 -------------------------------------------------------------------------------------------
 Cette application sert a gere ses composants, pouvoir les comparer, ajouter, modifier et supprimer.
 Elle fonction en **local**.
-###Specifications :
+
+## Specifications :
 -----------------------------------------------------------------------------------------------
 
 -Obliger de lancer l'appli en tant qu'administrateur pour pouvoir sauvegarder le fichier de 
