@@ -1,0 +1,437 @@
+﻿<UserControl x:Class="PcComparator.ComposantUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PcComparator"
+             xmlns:Resources="clr-namespace:PcComparator.Ressources;assembly=PcComparator.Ressources"
+             mc:Ignorable="d" Name="root"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ramTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Capacite,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de Barrettes : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.NbBarettes,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Frequence,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="CAS : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Cas,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="cpuTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Frequence,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de Coeurs : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.NbCoeur,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de threads : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.NbThread,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="gpuTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Mémoire : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Memoire,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="hddTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : " FontWeight="Bold"/>
+                    <TextBox  Text="{Binding Composant.Capacite,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse de lecture : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.VitesseLect,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse d'écriture : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.VitesseEcr,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Taille : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Taille,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ssdTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Capacite,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse de lecture : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.VitesseLect,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse d'écriture : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.VitesseEcr,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Connectique : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Connectique,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="cmTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Socket : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Socket,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Format : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Format,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Chipset : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Chipset,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence supporté : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Frequence,ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+
+        <Resources:ComposantTemplateSelector RamTemplate="{StaticResource ramTemplate}" CpuTemplate="{StaticResource cpuTemplate}"
+                                             GpuTemplate="{StaticResource gpuTemplate}" HddTemplate="{StaticResource hddTemplate}"
+                                             SsdTemplate="{StaticResource ssdTemplate}" CmTemplate="{StaticResource cmTemplate}"
+                                         x:Key="ModifTemplate"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Grid.Column="0">
+            <StackPanel Grid.Row="1" Margin="20,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Marque : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Marque, ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Modèle : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Modele, ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Prix : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Prix, ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+
+                <ContentControl ContentTemplateSelector="{StaticResource ModifTemplate}" Content="{Binding M.SelectedItem}"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Lien de l'image : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.ImageLien, ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Description : " FontWeight="Bold"/>
+                    <TextBox Text="{Binding Composant.Description, ElementName=root,  UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="red" BorderThickness="1">
+                                        <AdornedElementPlaceholder/>
+                                    </Border>
+                                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

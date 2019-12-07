@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<ArrayOfComposant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Composant xsi:type="RAM" prix="150" marque="Corsair" modele="vengeance" lien_Image="images\ram2.jpg" description="bon pour de la bureautique" Type="RAM">
+    <Capacite>8</Capacite>
+    <NbBarettes>2</NbBarettes>
+    <Frequence>3666</Frequence>
+    <Cas>15</Cas>
+  </Composant>
+  <Composant xsi:type="RAM" prix="350" marque="GSkill" modele="TridentZ" lien_Image="images\ram.png" description="OVERKILL" Type="RAM">
+    <Capacite>32</Capacite>
+    <NbBarettes>2</NbBarettes>
+    <Frequence>3666</Frequence>
+    <Cas>15</Cas>
+  </Composant>
+  <Composant xsi:type="RAM" prix="150" marque="HyperX" modele="Predator" lien_Image="images\ram3.jpg" description="bon pour du gaming" Type="RAM">
+    <Capacite>8</Capacite>
+    <NbBarettes>2</NbBarettes>
+    <Frequence>3666</Frequence>
+    <Cas>15</Cas>
+  </Composant>
+  <Composant xsi:type="CPU" prix="150" marque="Intel core" modele="i9" lien_Image="images\cpu.png" description="OVERKILL" Type="CPU">
+    <Frequence>4.5</Frequence>
+    <NbCoeur>4</NbCoeur>
+    <NbThread>8</NbThread>
+  </Composant>
+  <Composant xsi:type="CPU" prix="350" marque="AMD" modele="Ryzen 5" lien_Image="images\ryzen 5.jpg" description="bon pour de la bureautique/gaming" Type="CPU">
+    <Frequence>3.5</Frequence>
+    <NbCoeur>8</NbCoeur>
+    <NbThread>16</NbThread>
+  </Composant>
+  <Composant xsi:type="CPU" prix="150" marque="Intel core" modele="i7" lien_Image="images\i7.jpg" description="bon pour du gaming" Type="CPU">
+    <Frequence>4</Frequence>
+    <NbCoeur>4</NbCoeur>
+    <NbThread>8</NbThread>
+  </Composant>
+  <Composant xsi:type="GPU" prix="260" marque="Nvidia" modele="gtx 1050" lien_Image="images\1050.jpg" description="bon pour du gaming avec des graphismes bas" Type="GPU">
+    <Memoire>4</Memoire>
+  </Composant>
+  <Composant xsi:type="GPU" prix="370" marque="Nvidia" modele="gtx 1070" lien_Image="images\1070.jpg" description="bon pour du gaming avec des graphismes moyens" Type="GPU">
+    <Memoire>6</Memoire>
+  </Composant>
+  <Composant xsi:type="GPU" prix="450" marque="Nvidia" modele="gtx 1080ti" lien_Image="images\gpu.png" description="bon pour du gaming avec des graphismes très hauts" Type="GPU">
+    <Memoire>8</Memoire>
+  </Composant>
+  <Composant xsi:type="HDD" prix="260" marque="Seagate" modele="barracuda" lien_Image="images\hdd.png" description="Bon HDD qui dur dans le temps" Type="HDD">
+    <Capacite>1000</Capacite>
+    <VitesseLect>160</VitesseLect>
+    <VitesseEcr>130</VitesseEcr>
+    <Taille>2.5</Taille>
+  </Composant>
+  <Composant xsi:type="HDD" prix="370" marque="Western Digital" modele="Blue" lien_Image="images\western blue.jpg" description="grande capacité de stockage" Type="HDD">
+    <Capacite>2000</Capacite>
+    <VitesseLect>150</VitesseLect>
+    <VitesseEcr>120</VitesseEcr>
+    <Taille>2.5</Taille>
+  </Composant>
+  <Composant xsi:type="HDD" prix="450" marque="Western Digital" modele="Green" lien_Image="images\western green.jpg" description="bonne vitesse de lecture et ecriture" Type="HDD">
+    <Capacite>1000</Capacite>
+    <VitesseLect>100</VitesseLect>
+    <VitesseEcr>200</VitesseEcr>
+    <Taille>3</Taille>
+  </Composant>
+  <Composant xsi:type="SSD" prix="260" marque="Samsung" modele="960 evo" lien_Image="images\960 evo.jpg" description="un des meilleurs ssd m.2" Type="SSD">
+    <Capacite>1000</Capacite>
+    <VitesseLect>800</VitesseLect>
+    <VitesseEcr>600</VitesseEcr>
+    <Connectique>m.2</Connectique>
+  </Composant>
+  <Composant xsi:type="SSD" prix="370" marque="Samsung" modele="860 evo" lien_Image="images\860 evo.jpg" description="bon ssd" Type="SSD">
+    <Capacite>2000</Capacite>
+    <VitesseLect>250</VitesseLect>
+    <VitesseEcr>220</VitesseEcr>
+    <Connectique>sata 3</Connectique>
+  </Composant>
+  <Composant xsi:type="SSD" prix="450" marque="Kingston" modele="A400" lien_Image="images\ssd.png" description="meilleur ssd sata 3" Type="SSD">
+    <Capacite>1000</Capacite>
+    <VitesseLect>500</VitesseLect>
+    <VitesseEcr>450</VitesseEcr>
+    <Connectique>sata 3</Connectique>
+  </Composant>
+  <Composant xsi:type="CM" prix="260" marque="MSI" modele="MEG" lien_Image="images\msi meg.jpg" description="Carte mere de gamer" Type="CM">
+    <Socket>1151</Socket>
+    <Chipset>Z390</Chipset>
+    <Format>ATX</Format>
+    <Frequence>DDR4</Frequence>
+  </Composant>
+  <Composant xsi:type="CM" prix="370" marque="Intel" modele="B360 gaming" lien_Image="images\cm.png" description="bon pour le jeu" Type="CM">
+    <Socket>Am4</Socket>
+    <Chipset>AMD X470</Chipset>
+    <Format>micro-ATX</Format>
+    <Frequence>DDR4</Frequence>
+  </Composant>
+  <Composant xsi:type="CM" prix="450" marque="ASUS" modele="tuf" lien_Image="images\asus tuf.jpg" description="bonne carte mere bas prix" Type="CM">
+    <Socket>1151</Socket>
+    <Chipset>H310 express</Chipset>
+    <Format>mini-ATX</Format>
+    <Frequence>DDR3</Frequence>
+  </Composant>
+</ArrayOfComposant>

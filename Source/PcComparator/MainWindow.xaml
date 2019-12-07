@@ -1,0 +1,540 @@
+﻿<Controls:MetroWindow x:Class="PcComparator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:PcComparator"
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow, IsDesignTimeCreatable=False}"
+        xmlns:Resources="clr-namespace:PcComparator.Ressources;assembly=PcComparator.Ressources"
+        Title="PcComparator" TitleCaps="False"
+        Height="640"
+        Width="1280"
+        MinWidth="970"
+        MinHeight="640"
+        BorderThickness="0" 
+        GlowBrush="Black"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource fond}"
+        Closed="Window_Closed" 
+        Icon="icone.ico">
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="CRam" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter"/>
+        <CollectionViewSource x:Key="CCpu" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter_2"/>
+        <CollectionViewSource x:Key="CGpu" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter_3"/>
+        <CollectionViewSource x:Key="CHdd" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter_4"/>
+        <CollectionViewSource x:Key="CSsd" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter_5"/>
+        <CollectionViewSource x:Key="CCm" Source="{Binding M.ListeComp}" Filter="CollectionViewSource_Filter_6"/>
+
+        <DataTemplate x:Key="ramTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Capacite, StringFormat=\{0\}Go }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de Barrettes : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding NbBarettes}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Frequence, StringFormat=\{0\}Mhz }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="CAS : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Cas}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="cpuTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Frequence, StringFormat=\{0\}Ghz }"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de Coeurs : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding NbCoeur}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Nombre de threads : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding NbThread}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="gpuTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Mémoire : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Memoire, StringFormat=\{0\}Go }"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="hddTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Capacite, StringFormat=\{0\}Go }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse de lecture : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding VitesseLect, StringFormat=\{0\}Mo/s }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse d'écriture : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding VitesseEcr,StringFormat=\{0\}Mo/s }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Taille : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Taille, StringFormat=\{0\} Pouces }" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ssdTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Capacité : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Capacite, StringFormat=\{0\}Go }"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse de lecture : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding VitesseLect,StringFormat=\{0\}Mo/s }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Vitesse d'écriture : "  FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding VitesseEcr,StringFormat=\{0\} }" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Connectique : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Connectique}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="cmTemplate">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Socket : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Socket}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Format : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Format}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Chipset : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Chipset}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Resources:TextBlock1 Text="Fréquence supporté : " FontWeight="Bold"/>
+                    <Resources:TextBlock1 Text="{Binding Frequence}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListRamTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana" >
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Capacite}"/>
+                <Run Text="Go"/>
+                <Run Text="{Binding Frequence}"/>
+                <Run Text="Mhz"/>
+                <Run Text="{Binding NbBarettes}"/>
+                <Run Text="barrettes  Cas"/>
+                <Run Text="{Binding Cas}"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListCpuTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana">
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Frequence}"/>
+                <Run Text="Ghz"/>
+                <Run Text="{Binding NbCoeur}"/>
+                <Run Text="coeurs"/>
+                <Run Text="{Binding NbThread}"/>
+                <Run Text="threads"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListGpuTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana">
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Memoire}"/>
+                <Run Text="Go"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListHddTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana">
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Capacite}"/>
+                <Run Text="Go"/>
+                <Run Text="{Binding Taille}"/>
+                <Run Text="''"/>
+                <Run Text="{Binding VitesseLect}"/>
+                <Run Text="Mo/s et"/>
+                <Run Text="{Binding VitesseEcr}"/>
+                <Run Text="Mo/s"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListSsdTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana">
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Capacite}"/>
+                <Run Text="Go"/>
+                <Run Text="{Binding Connectique}"/>
+                <Run Text="{Binding VitesseLect}"/>
+                <Run Text="Mo/s et"/>
+                <Run Text="{Binding VitesseEcr}"/>
+                <Run Text="Mo/s"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListCmTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontFamily="Verdana">
+                <Run Text="{Binding Marque}"/>
+                <Run Text="{Binding Modele}"/>
+                <Run Text="{Binding Socket}"/>
+                <Run Text="{Binding Format}"/>
+                <Run Text="{Binding Chipset}"/>
+                <Run Text="{Binding Frequence}"/>
+                <Run Text="{Binding Prix}"/>
+                <Run Text="€"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <Resources:ComposantTemplateSelector RamTemplate="{StaticResource ramTemplate}" CpuTemplate="{StaticResource cpuTemplate}"
+                                             GpuTemplate="{StaticResource gpuTemplate}" HddTemplate="{StaticResource hddTemplate}"
+                                             SsdTemplate="{StaticResource ssdTemplate}" CmTemplate="{StaticResource cmTemplate}"
+                                         x:Key="CompoTemplate"/>
+
+        <Resources:ComposantTemplateSelector RamTemplate="{StaticResource ListRamTemplate}" CpuTemplate="{StaticResource ListCpuTemplate}"
+                                              GpuTemplate="{StaticResource ListGpuTemplate}" HddTemplate="{StaticResource ListHddTemplate}"
+                                              SsdTemplate="{StaticResource ListSsdTemplate}" CmTemplate="{StaticResource ListCmTemplate}"
+                                              x:Key="ListTemplate"/>
+
+    </Window.Resources>
+    <Grid>
+        <Grid Name="chargement">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF38D9B4"/>
+                    <GradientStop Color="#FFCCE4DE" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Chargement de l'application..." VerticalAlignment="Top" FontSize="55" 
+                       FontWeight="Bold" FontFamily="Cooper Black" Margin="0,15,0,0" />
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="400">
+                <Button Name="entrer" Click="Entrer_Click" IsEnabled="False" >
+                    <Button.Content>
+                        <Image Source="icone.ico" Stretch="UniformToFill" />
+                    </Button.Content>
+                </Button>
+                <Label Name="labelEntrer" Content="Appuyez pour entrer" FontSize="30" FontWeight="Bold" FontFamily="Cooper Black" 
+                       HorizontalAlignment="Center" Visibility="Collapsed"/>
+            </StackPanel>
+
+            <Controls:MetroProgressBar Name="pb1" HorizontalAlignment="Left" Height="72" VerticalAlignment="Bottom" Width="2476" 
+                                       ValueChanged="Pb1_ValueChanged" BorderBrush="Black" Background="#FF24C389" BorderThickness="2" Margin="-4,0,-0,0" >
+                <ProgressBar.Foreground>
+                    <ImageBrush x:Name="imageBarre" Stretch="Uniform"/>
+                </ProgressBar.Foreground>
+            </Controls:MetroProgressBar>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="chargement" Storyboard.TargetProperty="Opacity" From="1.0" To="0" Duration="0:0:1" />
+                            
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Appli" Storyboard.TargetProperty="Opacity" From="0" To="1.0" Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+        </Grid>
+
+        <Grid Name="Appli" Visibility="Collapsed" Opacity="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Storyboard x:Key="MonStoryBoard">
+                    <DoubleAnimation From="0" To="30" Duration="0:0:0.75" 
+                                 AutoReverse="True"
+                                Storyboard.TargetName="popup"  Storyboard.TargetProperty="(Canvas.Bottom)"/>
+                </Storyboard>
+
+                <Storyboard x:Key="MonStoryBoard2">
+                    <DoubleAnimation From="0" To="1" Duration="0:0:0.75" 
+                                 AutoReverse="True"
+                                Storyboard.TargetName="popup"  Storyboard.TargetProperty="Opacity"/>
+                </Storyboard>
+            </Grid.Resources>
+
+            
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Name="B1" Width="*"/>
+                    <ColumnDefinition Name="B2" Width="*"/>
+                    <ColumnDefinition Name="B3" Width="*"/>
+                    <ColumnDefinition Name="B4" Width="*"/>
+                    <ColumnDefinition Name="B5" Width="*"/>
+                    <ColumnDefinition Name="B6" Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="Ram" Grid.Column="0" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/ram.png"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="Cpu" Grid.Column="1" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/cpu.png"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="Gpu" Grid.Column="2" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/gpu.png"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="Hdd" Grid.Column="3" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/hdd.png"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="Ssd" Grid.Column="4" MinHeight="50" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/ssd.png"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="Cm" Grid.Column="5" Click="Button_Menu" Style="{StaticResource BoutonMenu}">
+                    <Button.Content>
+                        <Image Source="images/cm.png" />
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Stretch" Margin="20,0,0,0" Grid.Row="3" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="TextDebut" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+
+                <Grid Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="8*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
+                            <TextBlock Text="Tris :" FontSize="16" FontWeight="Bold" FontFamily="Consolas" VerticalAlignment="Center" />
+                            <Button Name="triMarque" Content="Marque" Click="TriMarque_Click" Margin="5,0,5,0" IsEnabled="False" Height="30"/>
+                            <Button Name="triPrix" Content="Prix" Click="TriPrix_Click" Margin="5,0,0,0" IsEnabled="False" Height="30"/>
+                        </StackPanel>
+                        <ListBox Name="ListRam" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CRam}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                        <ListBox Name="ListCpu" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CCpu}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                        <ListBox Name="ListGpu" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CGpu}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                        <ListBox Name="ListHdd" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CHdd}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                        <ListBox Name="ListSsd" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CSsd}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                        <ListBox Name="ListCm" Grid.Row="1" BorderThickness="2" Visibility="Collapsed" SelectedItem="{Binding M.SelectedItem}" 
+                                 SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource CCm}}" 
+                                 ItemTemplateSelector="{StaticResource ListTemplate}"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2" Visibility="{Binding AffichageVisibilite}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Name="imageDescription" Grid.Row="0" Source="{Binding M.SelectedItem.ImageLien}" Margin="0,0,10,0" />
+                        <ScrollViewer Grid.Row="1" Margin="0,0,10,0" >
+                            <Resources:TextBlock1 Name="textDescription" TextWrapping="Wrap" Text="{Binding M.SelectedItem.Description}" 
+                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ScrollViewer>
+                        <Button Name="ValiderModification" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" 
+                                Click="ValiderModification_Click" MinWidth="120" MinHeight="30" BorderBrush="Black" Foreground="#FF010300" 
+                                FontFamily="Segoe UI Black" FontSize="14" Visibility="Hidden">
+                            <Button.Background>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FF27C516"/>
+                                    <GradientStop Color="#FF299D1C" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="3*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Resources:TextBlock1 Name="textTitre" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" 
+                                              DataContext="{Binding M.SelectedItem}" TextWrapping="Wrap">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Marque"/>
+                                    <Binding Path="Modele"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </Resources:TextBlock1>
+                        
+                        <Grid Grid.Row="1" Margin="20,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Name="descriptionComp" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Resources:TextBlock1 Text="Marque : "  FontWeight="Bold"/>
+                                    <Resources:TextBlock1 Text="{Binding M.SelectedItem.Marque}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Resources:TextBlock1 Text="Modèle : " FontWeight="Bold"/>
+                                    <Resources:TextBlock1 Text="{Binding M.SelectedItem.Modele}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Resources:TextBlock1 Text="Prix :" FontWeight="Bold"/>
+                                    <Resources:TextBlock1 Text="{Binding M.SelectedItem.Prix, StringFormat=' {0}€'}"/>
+                                </StackPanel>
+
+                                <ContentControl ContentTemplateSelector="{StaticResource CompoTemplate}" Content="{Binding M.SelectedItem}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Name="descriptionComp2" >
+                                <Resources:TextBlock1 Text="Liens d'achat : " FontWeight="Bold" TextDecorations="Underline" />
+                                <Resources:TextBlock1 >
+                                    <Hyperlink Click="Hyperlink_Click" FontFamily="Global Monospace" FontSize="20">
+                                        materiel.net
+                                    </Hyperlink>
+                                </Resources:TextBlock1>
+                                <Resources:TextBlock1 >
+                                    <Hyperlink Click="Hyperlink_Click_2" FontFamily="Global Monospace" FontSize="20">
+                                        LDLC
+                                    </Hyperlink>
+                                </Resources:TextBlock1>
+                                <Resources:TextBlock1 >
+                                    <Hyperlink Click="Hyperlink_Click_1" FontFamily="Global Monospace" FontSize="20">
+                                        TopAchat
+                                    </Hyperlink>
+                                </Resources:TextBlock1>
+                                
+                            </StackPanel>
+                            
+                        </Grid>
+                        <local:ComposantUserControl x:Name="userControl1" Grid.Row="1" Composant="{Binding M.SelectedItem,Mode=TwoWay}" Visibility="Hidden"/>
+                    </Grid>
+                </Grid>
+                <StackPanel Grid.Column="1" Margin="10,0">
+                    <TextBlock Text="Composant :" HorizontalAlignment="Center" FontWeight="Bold" TextDecorations="Underline"/>
+                    <Button Name="Supprimer" Content="Supprimer" Click="Supprimer_Click" IsEnabled="False" Margin="5" MinHeight="30" 
+                            Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    <Button Name="Modifier" Content="Modifier" IsEnabled="False" Click="Modifier_Click" Margin="5" MinHeight="30" 
+                            Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    <Button Name="Ajouter" Content="Ajouter" IsEnabled="False" Click="Ajouter_Click" Margin="5" MinHeight="30" 
+                            Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    
+                    <TextBlock Text="Panier :" HorizontalAlignment="Center" FontWeight="Bold" TextDecorations="Underline"/>
+                    <Button Name="AjouterPanier" Content="Ajouter" Margin="5" Click="AjouterPanier_Click" IsEnabled="False" MinHeight="30" 
+                            Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    <Controls:Badged x:Name="badgePanier" Badge="{Binding Path=BadgeValue}" BadgeBackground="Green">
+                        <Button Name="Panier" Content="Ouvrir" Margin="5" Click="Panier_Click" MinHeight="30" 
+                                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    </Controls:Badged>
+
+                    <TextBlock Text="Comparateur :" HorizontalAlignment="Center" FontWeight="Bold" TextDecorations="Underline"/>
+                    <Button Name="AjouterComparateur" Content="Ajouter" Margin="5" Click="AjouterComparateur_Click" IsEnabled="False" MinHeight="30" 
+                                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    <Controls:Badged x:Name="badgeComp" Badge="{Binding Path=BadgeValue}" BadgeBackground="Green" >
+                        <Button Name="Comparateur" Content="Ouvrir" Grid.Row="5" Margin="5" Click="Comparateur_Click" MinHeight="30"
+                                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    </Controls:Badged>
+                </StackPanel>
+            </Grid>
+
+            <Button Name="DB" Grid.Row="0" HorizontalAlignment="Left" Content="Charger données de base" Click="DB_Click" MinHeight="20" MaxHeight="30" 
+                    Margin="10,0,0,0" Style="{DynamicResource SquareButtonStyle}"/>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
+                <TextBlock Name="infoConnexion" Text="Veuillez vous connecter pour ajouter/supprimer/modifier" 
+                           VerticalAlignment="Center" FontFamily="Global Monospace" FontSize="16"/>
+                <TextBox Name="TextBoxConnexion" Width="90" Margin="10,0" MinHeight="20" MaxHeight="30" KeyDown="TextBoxConnexion_KeyDown"/>
+                <Button Name="BouttonConnexion" Content="Se connecter" Width="90" MinHeight="20" MaxHeight="30" Click="BouttonConnexion_Click" 
+                        Style="{DynamicResource SquareButtonStyle}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                <TextBlock Name="TextBlockConnexion" Margin="10,0" MinHeight="20" MaxHeight="30" Visibility="Hidden" 
+                           FontFamily="Global Monospace" FontSize="14" VerticalAlignment="Center"/>
+                <Button Name="BouttonDeconnexion" Content="Se déconnecter" Width="90" MinHeight="20" MaxHeight="30" 
+                        Click="BouttonDeconnexion_Click" Visibility="Hidden"  Style="{DynamicResource SquareButtonStyle}"/>
+            </StackPanel>
+
+        </Grid>
+        <Canvas x:Name="LeCanvas" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <TextBlock Name="popup" Opacity="0" FontSize="26" FontWeight="Bold" 
+                       FontFamily="Global Monospace" Background="#FFD6A628" Canvas.Right="-200"/>
+        </Canvas>
+    </Grid>
+</Controls:MetroWindow>
