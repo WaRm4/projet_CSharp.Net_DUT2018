@@ -4,7 +4,7 @@ Cette application sert a gere ses composants, pouvoir les comparer, ajouter, mod
 Elle fonction en **local**.
 
 ## Specifications :
------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 
 -Obliger de lancer l'appli en tant qu'administrateur pour pouvoir sauvegarder le fichier de 
 stockage des composants (donc pour pouvoir ajouter,supprimer ou modifier un composant comme 
