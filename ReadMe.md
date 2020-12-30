@@ -23,5 +23,5 @@ un dossier de créé dans ProgramData avec les données).
 
 #Répartition du travail :
 
-+ Killian : principalement partie code c# et xaml, documentation du code, et mises des documents en fonction.
++ Killian : principalement partie code c# et xaml, documentation du code, et mises des documents en fonction, esthétique de l'appli.
 + Maxime : principalement diagrammes, mockup, esthétique de l'appli.
