@@ -1,4 +1,4 @@
-#PC COMPARATOR
+# PC COMPARATOR
 -------------------------------------------------------------------------------------------
 Cette application sert a gere ses composants, pouvoir les comparer, ajouter, modifier et supprimer.
 Elle fonction en **local**.
